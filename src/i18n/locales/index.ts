@@ -12,7 +12,7 @@ export const locales = {
   de,
   ru,
   zh,
-  es
+  es,
   nl,
   it,
   pl,
