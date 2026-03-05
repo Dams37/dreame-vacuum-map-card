@@ -1,11 +1,13 @@
-export const fr = {
-  // Sélecteur de pièces
+import type { Translation } from './en';
+
+export const fr: Translation = {
+  // Room selector
   room_selector: {
     title: 'Sélectionner des pièces',
     selected_count: '{{count}} sélectionnée(s)',
   },
 
-  // Carte de l'aspirateur
+  // Vacuum map
   vacuum_map: {
     no_map: 'Aucune carte disponible',
     looking_for: 'Recherche de : {{entity}}',
@@ -16,17 +18,17 @@ export const fr = {
     switch_to_list: 'Passer à la vue liste',
     switch_to_map: 'Passer à la vue carte',
     room_list_overlay: 'Appuyez sur les pièces pour les sélectionner',
-    no_rooms: 'Aucune pièce disponible',
+    no_rooms: 'Aucune pièce configurée',
   },
 
-  // Onglets de mode
+  // Mode tabs
   modes: {
     room: 'Pièce',
     all: 'Tout',
     zone: 'Zone',
   },
 
-  // Boutons d'action
+  // Action buttons
   actions: {
     clean: 'Nettoyer',
     clean_all: 'Tout nettoyer',
@@ -37,10 +39,10 @@ export const fr = {
     pause: 'Pause',
     resume: 'Reprendre',
     stop: 'Arrêter',
-    dock: 'Base',
+    dock: 'Chargement',
   },
 
-  // Messages Toast
+  // Toast messages
   toast: {
     selected_room: '{{name}} sélectionné(e)',
     deselected_room: '{{name}} désélectionné(e)',
@@ -61,13 +63,13 @@ export const fr = {
     select_zone_first: 'Veuillez sélectionner une zone sur la carte',
   },
 
-  // Affichage de la sélection des pièces
+  // Room selection display
   room_display: {
     selected_rooms: 'Pièces sélectionnées :',
     selected_label: 'Sélection :',
   },
 
-  // Bouton de mode de nettoyage
+  // Cleaning mode button
   cleaning_mode_button: {
     prefix_custom: 'Personnalisé : ',
     prefix_cleangenius: 'CleanGenius : ',
@@ -78,40 +80,40 @@ export const fr = {
     mop: 'Serpillère',
   },
 
-  // Modal de mode de nettoyage
+  // Cleaning mode modal
   cleaning_mode: {
     title: 'Mode de nettoyage',
     clean_genius: 'CleanGenius',
     custom: 'Personnalisé',
   },
 
-  // Modal de raccourcis
+  // Shortcuts modal
   shortcuts: {
     title: 'Raccourcis',
     no_shortcuts: 'Aucun raccourci disponible',
     create_hint: 'Créez des raccourcis dans l\'application Dreame pour lancer rapidement vos routines préférées',
   },
 
-  // Mode personnalisé
+  // Custom mode
   custom_mode: {
     cleaning_mode_title: 'Mode de nettoyage',
     suction_power_title: 'Puissance d\'aspiration',
     max_plus_description: 'La puissance sera augmentée au niveau maximum (usage unique).',
-    wetness_title: 'Humidité',
-    slightly_dry: 'Légèrement sec',
-    moist: 'Humide',
-    wet: 'Mouillé',
+    wetness_title: 'Débit d\'eau',
+    slightly_dry: 'Sec',
+    moist: 'Standard',
+    wet: 'Humide',
     mop_washing_frequency_title: 'Fréquence de lavage de serpillère',
-    route_title: 'Trajectoire',
+    route_title: 'Trajectoire de nettoyage',
   },
 
-  // Mode CleanGenius
+  // CleanGenius mode
   cleangenius_mode: {
     cleaning_mode_title: 'Mode de nettoyage',
     deep_cleaning: 'Nettoyage approfondi',
   },
 
-  // En-tête
+  // Header
   header: {
     battery: 'Batterie',
     status: 'Statut',
@@ -119,7 +121,7 @@ export const fr = {
     time: 'Temps',
   },
 
-  // Unités
+  // Units
   units: {
     square_meters: 'm²',
     minutes: 'min',
@@ -128,28 +130,28 @@ export const fr = {
     decibels: 'dBm',
   },
 
-  // Niveaux d'aspiration
+  // Suction levels
   suction_levels: {
     quiet: 'Silencieux',
     standard: 'Standard',
-    strong: 'Turbo',
-    turbo: 'Max',
+    strong: 'Fort',
+    turbo: 'Turbo',
   },
 
-  // Fréquence de lavage
+  // Mop washing frequency
   mop_washing_frequency: {
     by_room: 'Par pièce',
     by_area: 'Par surface',
     by_time: 'Par durée',
   },
 
-  // Erreurs
+  // Errors
   errors: {
     entity_not_found: 'Entité introuvable : {{entity}}',
     failed_to_load: 'Échec du chargement des données',
   },
 
-  // Panneau de paramètres
+  // Settings panel
   settings: {
     title: 'Paramètres',
     consumables: {
@@ -163,7 +165,7 @@ export const fr = {
     },
     device_info: {
       title: 'Infos appareil',
-      firmware: 'Firmware',
+      firmware: 'Version du firmware',
       total_area: 'Surface totale nettoyée',
       total_time: 'Temps total de nettoyage',
       total_cleans: 'Nombre total de nettoyages',
@@ -178,22 +180,22 @@ export const fr = {
     },
     quick_settings: {
       title: 'Réglages rapides',
-      child_lock: 'Sécurité enfant',
+      child_lock: 'Verrouillage enfant',
       child_lock_desc: 'Désactiver les boutons physiques',
       carpet_boost: 'Boost tapis',
       carpet_boost_desc: 'Augmenter l\'aspiration sur les tapis',
       obstacle_avoidance: 'Évitement d\'obstacles',
       obstacle_avoidance_desc: 'Éviter les objets durant le nettoyage',
-      auto_dust_collecting: 'Vidage auto',
+      auto_dust_collecting: 'Vidage automatique',
       auto_dust_collecting_desc: 'Vider automatiquement le bac à poussière',
-      auto_drying: 'Séchage auto',
+      auto_drying: 'Séchage automatique',
       auto_drying_desc: 'Sécher la serpillère après nettoyage',
       dnd: 'Ne pas déranger',
       dnd_desc: 'Heures silencieuses avec activité réduite',
     },
     volume: {
       title: 'Volume & Son',
-      test_sound: 'Localiser',
+      test_sound: 'Localiser l\'aspirateur',
       muted: 'Muet',
     },
     carpet: {
@@ -211,7 +213,7 @@ export const fr = {
       sensitivity_high: 'Élevée',
     },
     ai_detection: {
-      title: 'IA & Détection',
+      title: 'AI & Detection',
       obstacle_avoidance: 'Évitement d\'obstacles',
       obstacle_avoidance_desc: 'Utiliser les capteurs pour éviter les obstacles',
       ai_obstacle_detection: 'Détection d\'obstacles par IA',
@@ -235,5 +237,3 @@ export const fr = {
     },
   },
 };
-
-export type Translation = typeof fr;
