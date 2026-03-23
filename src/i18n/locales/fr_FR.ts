@@ -1,6 +1,6 @@
 import type { Translation } from './en';
 
-export const fr: Translation = {
+export const fr_FR: Translation = {
   // Room selector
   room_selector: {
     title: 'Sélectionner des pièces',
@@ -213,7 +213,7 @@ export const fr: Translation = {
       sensitivity_high: 'Élevée',
     },
     ai_detection: {
-      title: 'AI & Detection',
+      title: 'IA & Détection',
       obstacle_avoidance: 'Évitement d\'obstacles',
       obstacle_avoidance_desc: 'Utiliser les capteurs pour éviter les obstacles',
       ai_obstacle_detection: 'Détection d\'obstacles par IA',
