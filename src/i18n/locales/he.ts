@@ -19,6 +19,9 @@ export const he: Translation = {
     switch_to_map: 'עבור לתצוגת מפה',
     room_list_overlay: 'לחץ על חדרים כדי לבחור לניקוי',
     no_rooms: 'אין חדרים זמינים',
+    zoom_in: 'הגדל',
+    zoom_out: 'הקטן',
+    zoom_reset: 'אפס זום',
   },
 
   // לשוניות מצבים

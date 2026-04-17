@@ -98,7 +98,7 @@ export function DreameVacuumCard({ hass, config }: DreameVacuumCardProps) {
     return <div className="dreame-vacuum-card__error">{t('errors.failed_to_load')}</div>;
   }
 
-  const { deviceName, mapEntityId, rooms } = entityData;
+  const { deviceName, mapEntityId } = entityData;
   const effectiveMode = getEffectiveCleaningMode(entity, selectedMode);
 
   return (
@@ -111,7 +111,6 @@ export function DreameVacuumCard({ hass, config }: DreameVacuumCardProps) {
             mapEntityId={mapEntityId}
             selectedMode={selectedMode}
             selectedRooms={selectedRooms}
-            rooms={rooms}
             onRoomToggle={handleRoomToggleWithToast}
             zone={selectedZone}
             onZoneChange={setSelectedZone}
