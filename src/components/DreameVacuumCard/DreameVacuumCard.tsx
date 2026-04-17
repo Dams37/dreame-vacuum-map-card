@@ -10,6 +10,7 @@ import { RoomSelectionDisplay } from '../RoomSelectionDisplay';
 import { Toast } from '../common';
 import { useVacuumCardState, useVacuumServices, useToast, useTranslation, useTheme } from '../../hooks';
 import { extractEntityData, getEffectiveCleaningMode, getAttr } from '../../utils';
+import { HassProvider } from '../../contexts';
 import type { Hass, HassConfig } from '../../types/homeassistant';
 import { useState, useRef } from 'react';
 import './DreameVacuumCard.scss';
@@ -101,92 +102,94 @@ export function DreameVacuumCard({ hass, config }: DreameVacuumCardProps) {
   const effectiveMode = getEffectiveCleaningMode(entity, selectedMode);
 
   return (
-    <div ref={containerRef} className={`dreame-vacuum-card dreame-vacuum-card--${theme.name}`}>
-      <div className="dreame-vacuum-card__container">
-        <Header
-          entity={entity}
-          deviceName={deviceName}
-          onSettingsClick={() => setSettingsPanelOpened(true)}
-          language={language}
-        />
+    <HassProvider hass={hass}>
+      <div ref={containerRef} className={`dreame-vacuum-card dreame-vacuum-card--${theme.name}`}>
+        <div className="dreame-vacuum-card__container">
+          <Header
+            entity={entity}
+            deviceName={deviceName}
+            onSettingsClick={() => setSettingsPanelOpened(true)}
+            language={language}
+          />
 
-        <VacuumMap
-          hass={hass}
-          mapEntityId={mapEntityId}
-          selectedMode={selectedMode}
-          selectedRooms={selectedRooms}
-          rooms={rooms}
-          onRoomToggle={handleRoomToggleWithToast}
-          zone={selectedZone}
-          onZoneChange={setSelectedZone}
-          onImageDimensionsChange={(width, height) => setImageDimensions({ width, height })}
-          language={language}
-          isStarted={getAttr(entity.attributes.started, false)}
-          defaultRoomView={config.default_room_view}
-        />
+          <VacuumMap
+            hass={hass}
+            mapEntityId={mapEntityId}
+            selectedMode={selectedMode}
+            selectedRooms={selectedRooms}
+            rooms={rooms}
+            onRoomToggle={handleRoomToggleWithToast}
+            zone={selectedZone}
+            onZoneChange={setSelectedZone}
+            onImageDimensionsChange={(width, height) => setImageDimensions({ width, height })}
+            language={language}
+            isStarted={getAttr(entity.attributes.started, false)}
+            defaultRoomView={config.default_room_view}
+          />
 
-        <CleaningModeButton
-          cleanGeniusMode={getAttr(entity.attributes.cleangenius_mode, '')}
-          cleaningMode={getAttr(entity.attributes.cleaning_mode, 'Sweeping and mopping')}
-          cleangenius={getAttr(entity.attributes.cleangenius, 'Off')}
-          onClick={() => setModalOpened(true)}
-          onShortcutsClick={() => setShortcutsModalOpened(true)}
-          disabled={getAttr(entity.attributes.started, false)}
-          language={language}
-        />
-
-        <div className="dreame-vacuum-card__controls">
-          {selectedMode === 'room' && <RoomSelectionDisplay selectedRooms={selectedRooms} language={language} />}
-
-          <ModeTabs
-            selectedMode={effectiveMode}
-            onModeChange={handleModeChange}
+          <CleaningModeButton
+            cleanGeniusMode={getAttr(entity.attributes.cleangenius_mode, '')}
+            cleaningMode={getAttr(entity.attributes.cleaning_mode, 'Sweeping and mopping')}
+            cleangenius={getAttr(entity.attributes.cleangenius, 'Off')}
+            onClick={() => setModalOpened(true)}
+            onShortcutsClick={() => setShortcutsModalOpened(true)}
             disabled={getAttr(entity.attributes.started, false)}
             language={language}
           />
 
-          <ActionButtons
-            selectedMode={selectedMode}
-            selectedRoomsCount={selectedRooms.size}
-            isRunning={getAttr(entity.attributes.running, false)}
-            isPaused={getAttr(entity.attributes.paused, false)}
-            isDocked={entity.state === 'docked' || getAttr(entity.attributes.docked, false)}
-            onClean={handleCleanAction}
-            onPause={handlePause}
-            onResume={handleResume}
-            onStop={handleStop}
-            onDock={handleDock}
-            language={language}
-          />
+          <div className="dreame-vacuum-card__controls">
+            {selectedMode === 'room' && <RoomSelectionDisplay selectedRooms={selectedRooms} language={language} />}
+
+            <ModeTabs
+              selectedMode={effectiveMode}
+              onModeChange={handleModeChange}
+              disabled={getAttr(entity.attributes.started, false)}
+              language={language}
+            />
+
+            <ActionButtons
+              selectedMode={selectedMode}
+              selectedRoomsCount={selectedRooms.size}
+              isRunning={getAttr(entity.attributes.running, false)}
+              isPaused={getAttr(entity.attributes.paused, false)}
+              isDocked={entity.state === 'docked' || getAttr(entity.attributes.docked, false)}
+              onClean={handleCleanAction}
+              onPause={handlePause}
+              onResume={handleResume}
+              onStop={handleStop}
+              onDock={handleDock}
+              language={language}
+            />
+          </div>
         </div>
+
+        <CleaningModeModal
+          opened={modalOpened}
+          onClose={() => setModalOpened(false)}
+          entity={entity}
+          hass={hass}
+          language={language}
+        />
+
+        <ShortcutsModal
+          opened={shortcutsModalOpened}
+          onClose={() => setShortcutsModalOpened(false)}
+          entity={entity}
+          hass={hass}
+          language={language}
+        />
+
+        <SettingsPanel
+          opened={settingsPanelOpened}
+          onClose={() => setSettingsPanelOpened(false)}
+          hass={hass}
+          entity={entity}
+          config={config}
+          language={language}
+        />
+
+        {toast && <Toast message={toast} onClose={hideToast} />}
       </div>
-
-      <CleaningModeModal
-        opened={modalOpened}
-        onClose={() => setModalOpened(false)}
-        entity={entity}
-        hass={hass}
-        language={language}
-      />
-
-      <ShortcutsModal
-        opened={shortcutsModalOpened}
-        onClose={() => setShortcutsModalOpened(false)}
-        entity={entity}
-        hass={hass}
-        language={language}
-      />
-
-      <SettingsPanel
-        opened={settingsPanelOpened}
-        onClose={() => setSettingsPanelOpened(false)}
-        hass={hass}
-        entity={entity}
-        config={config}
-        language={language}
-      />
-
-      {toast && <Toast message={toast} onClose={hideToast} />}
-    </div>
+    </HassProvider>
   );
 }

@@ -1,4 +1,5 @@
 import { useTranslation } from '../../../hooks';
+import { useAreaUnit } from '../../../contexts';
 import { getAttr, isString, isNumber } from '../../../utils';
 import type { HassEntity } from '../../../types/homeassistant';
 import type { SupportedLanguage } from '../../../i18n/locales';
@@ -12,11 +13,12 @@ interface DeviceInfoSectionProps {
 interface InfoItem {
   labelKey: string;
   value: string | number;
-  unitKey?: string;
+  unit?: string;
 }
 
 export function DeviceInfoSection({ entity, language }: DeviceInfoSectionProps) {
   const { t } = useTranslation(language);
+  const areaUnit = useAreaUnit();
   const attributes = entity.attributes;
 
   const rawFirmware = attributes.firmware_version;
@@ -33,11 +35,11 @@ export function DeviceInfoSection({ entity, language }: DeviceInfoSectionProps) 
 
   const infoItems: InfoItem[] = [
     { labelKey: 'settings.device_info.firmware', value: firmwareVersion },
-    { labelKey: 'settings.device_info.total_area', value: totalCleanedArea, unitKey: 'units.square_meters' },
-    { labelKey: 'settings.device_info.total_time', value: totalCleaningTime, unitKey: 'units.minutes' },
+    { labelKey: 'settings.device_info.total_area', value: totalCleanedArea, unit: areaUnit },
+    { labelKey: 'settings.device_info.total_time', value: totalCleaningTime, unit: t('units.minutes') },
     { labelKey: 'settings.device_info.total_cleans', value: cleaningCount },
     { labelKey: 'settings.device_info.wifi_ssid', value: wifiSsid },
-    { labelKey: 'settings.device_info.wifi_signal', value: wifiRssi, unitKey: 'units.decibels' },
+    { labelKey: 'settings.device_info.wifi_signal', value: wifiRssi, unit: t('units.decibels') },
     { labelKey: 'settings.device_info.ip_address', value: wifiIp },
   ];
 
@@ -48,7 +50,7 @@ export function DeviceInfoSection({ entity, language }: DeviceInfoSectionProps) 
           <span className="device-info-section__label">{t(item.labelKey)}</span>
           <span className="device-info-section__value">
             {item.value}
-            {item.unitKey && ` ${t(item.unitKey)}`}
+            {item.unit && ` ${item.unit}`}
           </span>
         </div>
       ))}
