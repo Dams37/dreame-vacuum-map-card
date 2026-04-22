@@ -1,10 +1,15 @@
 import type { Translation } from './en';
 
-export const fr_FR: Translation = {
+export const fr: Translation = {
   // Room selector
   room_selector: {
     title: 'Sélectionner des pièces',
     selected_count: '{{count}} sélectionnée(s)',
+  },
+
+  // Map Selector
+  map_selector: {
+    unknown: 'Carte inconnue',
   },
 
   // Vacuum map
@@ -19,6 +24,11 @@ export const fr_FR: Translation = {
     switch_to_map: 'Passer à la vue carte',
     room_list_overlay: 'Appuyez sur les pièces pour les sélectionner',
     no_rooms: 'Aucune pièce configurée',
+    zoom_in: 'Zoom avant',
+    zoom_out: 'Zoom arrière',
+    zoom_reset: 'Réinitialiser le zoom',
+    lock_map: 'Verrouiller la carte',
+    unlock_map: 'Déverrouiller la carte',
   },
 
   // Mode tabs
@@ -39,7 +49,8 @@ export const fr_FR: Translation = {
     pause: 'Pause',
     resume: 'Reprendre',
     stop: 'Arrêter',
-    dock: 'Chargement',
+    stop_and_dock: 'Arrêter et charger',
+    dock: 'Charger',
   },
 
   // Toast messages
@@ -52,13 +63,14 @@ export const fr_FR: Translation = {
     cleaning_started: 'Nettoyage démarré',
     resuming: 'Reprise du nettoyage',
     starting_full_clean: 'Démarrage du nettoyage complet',
-    pausing_vacuum: 'Mise en pause de l\'aspirateur',
-    stopping_vacuum: 'Arrêt de l\'aspirateur',
-    vacuum_docking: 'L\'aspirateur retourne à sa base',
+    pausing_vacuum: "Mise en pause de l'aspirateur",
+    stopping_vacuum: "Arrêt de l'aspirateur",
+    stopping_and_docking: 'Arrêt et retour à la base',
+    vacuum_docking: "L'aspirateur retourne à sa base",
     starting_room_clean: 'Démarrage du nettoyage de la pièce sélectionnée',
     starting_room_clean_plural: 'Démarrage du nettoyage des {{count}} pièces sélectionnées',
     starting_zone_clean: 'Démarrage du nettoyage de zone',
-    select_rooms_first: 'Veuillez d\'abord sélectionner des pièces',
+    select_rooms_first: "Veuillez d'abord sélectionner des pièces",
     cannot_determine_map: 'Impossible de déterminer les dimensions de la carte',
     select_zone_first: 'Veuillez sélectionner une zone sur la carte',
   },
@@ -74,6 +86,7 @@ export const fr_FR: Translation = {
     prefix_custom: 'Personnalisé : ',
     prefix_cleangenius: 'CleanGenius : ',
     view_shortcuts: 'Voir les raccourcis',
+    repeats_tooltip: 'Passages de nettoyage',
     vac_and_mop: 'Aspi & Lavage',
     mop_after_vac: 'Lavage après Aspi',
     vacuum: 'Aspirateur',
@@ -91,20 +104,37 @@ export const fr_FR: Translation = {
   shortcuts: {
     title: 'Raccourcis',
     no_shortcuts: 'Aucun raccourci disponible',
-    create_hint: 'Créez des raccourcis dans l\'application Dreame pour lancer rapidement vos routines préférées',
+    create_hint: "Créez des raccourcis dans l'application Dreame pour lancer rapidement vos routines préférées",
   },
 
   // Custom mode
   custom_mode: {
     cleaning_mode_title: 'Mode de nettoyage',
-    suction_power_title: 'Puissance d\'aspiration',
+    suction_power_title: "Puissance d'aspiration",
     max_plus_description: 'La puissance sera augmentée au niveau maximum (usage unique).',
-    wetness_title: 'Débit d\'eau',
+    wetness_title: "Débit d'eau",
     slightly_dry: 'Sec',
     moist: 'Standard',
     wet: 'Humide',
     mop_washing_frequency_title: 'Fréquence de lavage de serpillère',
     route_title: 'Trajectoire de nettoyage',
+  },
+
+  // Customize Cleaning Mode
+  customize: {
+    title: 'Personnaliser',
+    description: "Définir les préférences d'aspiration et de lavage pour chaque zone.",
+    set_button: 'Définir',
+    vacuum: 'Aspirateur',
+    mop: 'Serpillère',
+    vac_and_mop: 'Aspi & Lavage',
+    cycles: 'Cycles',
+    apply_to_all: 'Appliquer à toutes les pièces',
+    click_room_hint: 'Cliquez sur une zone pour changer le mode.',
+    intelligent_recommendation: 'Recommandation intelligente',
+    select_room: 'Sélectionner une pièce',
+    settings_for: 'Paramètres de {{room}}',
+    no_rooms: 'Aucune pièce disponible',
   },
 
   // CleanGenius mode
@@ -145,6 +175,14 @@ export const fr_FR: Translation = {
     by_time: 'Par durée',
   },
 
+  // Cleaning Routes
+  cleaning_routes: {
+    quick: 'Rapide',
+    standard: 'Standard',
+    intensive: 'Intensif',
+    deep: 'Profond',
+  },
+
   // Errors
   errors: {
     entity_not_found: 'Entité introuvable : {{entity}}',
@@ -183,8 +221,8 @@ export const fr_FR: Translation = {
       child_lock: 'Verrouillage enfant',
       child_lock_desc: 'Désactiver les boutons physiques',
       carpet_boost: 'Boost tapis',
-      carpet_boost_desc: 'Augmenter l\'aspiration sur les tapis',
-      obstacle_avoidance: 'Évitement d\'obstacles',
+      carpet_boost_desc: "Augmenter l'aspiration sur les tapis",
+      obstacle_avoidance: "Évitement d'obstacles",
       obstacle_avoidance_desc: 'Éviter les objets durant le nettoyage',
       auto_dust_collecting: 'Vidage automatique',
       auto_dust_collecting_desc: 'Vider automatiquement le bac à poussière',
@@ -195,7 +233,7 @@ export const fr_FR: Translation = {
     },
     volume: {
       title: 'Volume & Son',
-      test_sound: 'Localiser l\'aspirateur',
+      test_sound: "Localiser l'aspirateur",
       muted: 'Muet',
     },
     carpet: {
@@ -214,13 +252,13 @@ export const fr_FR: Translation = {
     },
     ai_detection: {
       title: 'IA & Détection',
-      obstacle_avoidance: 'Évitement d\'obstacles',
+      obstacle_avoidance: "Évitement d'obstacles",
       obstacle_avoidance_desc: 'Utiliser les capteurs pour éviter les obstacles',
-      ai_obstacle_detection: 'Détection d\'obstacles par IA',
-      ai_obstacle_detection_desc: 'Utiliser l\'IA pour identifier les obstacles',
-      ai_obstacle_image_upload: 'Envoi d\'images d\'obstacles',
+      ai_obstacle_detection: "Détection d'obstacles par IA",
+      ai_obstacle_detection_desc: "Utiliser l'IA pour identifier les obstacles",
+      ai_obstacle_image_upload: "Envoi d'images d'obstacles",
       ai_obstacle_image_upload_desc: 'Envoyer les images pour analyse',
-      ai_pet_detection: 'Détection d\'animaux',
+      ai_pet_detection: "Détection d'animaux",
       ai_pet_detection_desc: 'Détecter et éviter les animaux',
       ai_human_detection: 'Détection humaine',
       ai_human_detection_desc: 'Détecter et éviter les personnes',
@@ -232,8 +270,21 @@ export const fr_FR: Translation = {
       stain_avoidance_desc: 'Éviter les taches détectées',
       collision_avoidance: 'Évitement de collision',
       collision_avoidance_desc: 'Prévenir les chocs avec les objets',
-      fill_light: 'Lumière d\'appoint',
+      fill_light: "Lumière d'appoint",
       fill_light_desc: 'Utiliser la lumière pour une meilleure détection',
+    },
+    station_controls: {
+      title: 'Contrôles de la station',
+      self_clean: 'Auto-nettoyage',
+      self_clean_desc: 'Démarrer le cycle de lavage de la serpillère',
+      manual_drying: 'Séchage manuel',
+      manual_drying_desc: 'Démarrer le cycle de séchage de la serpillère',
+      water_tank_draining: 'Vidange du réservoir',
+      water_tank_draining_desc: "Vidanger l'eau sale du réservoir",
+      base_station_cleaning: 'Nettoyage de la station',
+      base_station_cleaning_desc: 'Nettoyer la station de base',
+      empty_water_tank: 'Vider le réservoir',
+      empty_water_tank_desc: "Vider le réservoir de collecte d'eau",
     },
   },
 };
