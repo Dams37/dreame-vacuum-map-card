@@ -1,6 +1,6 @@
 import type { Translation } from './en';
 
-export const fr: Translation = {
+export const fr_FR: Translation = {
   // Room selector
   room_selector: {
     title: 'Sélectionner des pièces',
